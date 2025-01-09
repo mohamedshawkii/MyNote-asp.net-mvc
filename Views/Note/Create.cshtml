@@ -1,0 +1,50 @@
+﻿@model HelloWorld.Models.CreatedNotesView
+@{
+	ViewData["Title"] = "Create Note";
+}
+<Div>
+	<form asp-action="Create" method="post">
+		<label>Create New Note</label>
+		<input asp-for="NewNote!.Name" placeholder="Name" />
+		<input asp-for="NewNote!.Description" placeholder="Description"/>
+		<input type="datetime-local" asp-for="NewNote!.CreatedDate" placeholder="Date"/>
+		<button type="submit">Create</button>
+	</form>
+</Div>
+<style>
+	table, th, td {
+		border: 1px solid black;
+	}
+</style>
+<table class="w-100 h-auto m-auto mt-4">
+
+	@if (Model.ListOfNotes != null && Model.ListOfNotes.Any())
+	{
+		@foreach (var i in Model.ListOfNotes)
+		{
+			<tr>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Date</th>
+			</tr>
+			<tr>
+				<td>@i.Name</td>
+				<td>@i.Description</td>
+				<td>@i.CreatedDate</td>
+			</tr>
+		}
+	}
+	else
+	{
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Date</th>
+		</tr>
+		<tr>
+			<td>title</td>
+			<td>description</td>
+			<td>date</td>
+		</tr>
+	}
+</table>
